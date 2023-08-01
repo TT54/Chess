@@ -1,6 +1,6 @@
 package fr.tt54.chess.game.moves;
 
-import fr.tt54.chess.game.ChessBoard;
+import fr.tt54.chess.game.EasyChessBoard;
 
 import java.util.Set;
 
@@ -17,15 +17,15 @@ public class CastleMove extends AbstractChessMove{
     public Set<Integer> getEditedPositions() {
         if(isWhite()){
             if(kingSide){
-                return Set.of(ChessBoard.positionToInt(0, 7), ChessBoard.positionToInt(0, 4));
+                return Set.of(EasyChessBoard.positionToInt(0, 7), EasyChessBoard.positionToInt(0, 4));
             } else {
-                return Set.of(ChessBoard.positionToInt(0, 0), ChessBoard.positionToInt(0, 4));
+                return Set.of(EasyChessBoard.positionToInt(0, 0), EasyChessBoard.positionToInt(0, 4));
             }
         } else {
             if(kingSide){
-                return Set.of(ChessBoard.positionToInt(7, 7), ChessBoard.positionToInt(7, 4));
+                return Set.of(EasyChessBoard.positionToInt(7, 7), EasyChessBoard.positionToInt(7, 4));
             } else {
-                return Set.of(ChessBoard.positionToInt(7, 0), ChessBoard.positionToInt(7, 4));
+                return Set.of(EasyChessBoard.positionToInt(7, 0), EasyChessBoard.positionToInt(7, 4));
             }
         }
     }
@@ -72,9 +72,9 @@ public class CastleMove extends AbstractChessMove{
     @Override
     public int getInitialPosition() {
         if(isWhite()){
-            return ChessBoard.positionToInt(0, 4);
+            return EasyChessBoard.positionToInt(0, 4);
         } else {
-            return ChessBoard.positionToInt(7, 4);
+            return EasyChessBoard.positionToInt(7, 4);
         }
     }
 
@@ -82,15 +82,15 @@ public class CastleMove extends AbstractChessMove{
     public int getFinalPosition() {
         if(isWhite()){
             if(kingSide){
-                return ChessBoard.positionToInt(0, 6);
+                return EasyChessBoard.positionToInt(0, 6);
             } else {
-                return ChessBoard.positionToInt(0, 2);
+                return EasyChessBoard.positionToInt(0, 2);
             }
         } else {
             if(kingSide){
-                return ChessBoard.positionToInt(7, 6);
+                return EasyChessBoard.positionToInt(7, 6);
             } else {
-                return ChessBoard.positionToInt(7, 2);
+                return EasyChessBoard.positionToInt(7, 2);
             }
         }
     }
@@ -102,15 +102,15 @@ public class CastleMove extends AbstractChessMove{
     public int getRookPosition(){
         if(isWhite()){
             if(kingSide){
-                return ChessBoard.positionToInt(0, 5);
+                return EasyChessBoard.positionToInt(0, 5);
             } else {
-                return ChessBoard.positionToInt(0, 3);
+                return EasyChessBoard.positionToInt(0, 3);
             }
         } else {
             if(kingSide){
-                return ChessBoard.positionToInt(7, 5);
+                return EasyChessBoard.positionToInt(7, 5);
             } else {
-                return ChessBoard.positionToInt(7, 3);
+                return EasyChessBoard.positionToInt(7, 3);
             }
         }
     }

@@ -44,7 +44,7 @@ public class EasyChessBoard {
                 if(pieceId == 0) {
                     amountEmptySpace++;
                 } else {
-                    ChessBoard.ChessPiece piece = ChessBoard.ChessPiece.getPiece(pieceId);
+                    ChessPiece piece = ChessPiece.getPiece(pieceId);
                     fen += ((amountEmptySpace == 0) ? "" : amountEmptySpace + "") + piece.getStringId();
                     amountEmptySpace = 0;
                 }
@@ -93,7 +93,7 @@ public class EasyChessBoard {
                 int number = Integer.parseInt(c + "");
                 column += number;
             } else {
-                ChessBoard.ChessPiece piece = ChessBoard.ChessPiece.getPiece(c);
+                ChessPiece piece = ChessPiece.getPiece(c);
                 board[row][column] = piece.getId();
                 if(piece.getId() == 6){
                     whiteKingPosition = positionToInt(row, column);
@@ -158,7 +158,7 @@ public class EasyChessBoard {
         Set<AbstractChessMove> moves = new HashSet<>();
         int pieceId = this.getPiece(row, column);
         int currentPosition = positionToInt(row, column);
-        ChessBoard.ChessPiece piece = ChessBoard.ChessPiece.getPiece(pieceId);
+        ChessPiece piece = ChessPiece.getPiece(pieceId);
 
         if(piece.getIdWithoutColor() == 1){
             if(piece.getId() > 0){
@@ -431,6 +431,27 @@ public class EasyChessBoard {
         return moves;
     }
 
+    public Set<AbstractChessMove> getAllowedMoves(boolean white){
+        Set<AbstractChessMove> moves = new HashSet<>();
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++) {
+                int piece = this.getPiece(i, j);
+                if (piece != 0) {
+                    if (white && piece > 0) {
+                        moves.addAll(this.getPieceMoves(i, j, false, false));
+                    } else if (!white && piece < 0) {
+                        moves.addAll(this.getPieceMoves(i, j, false, false));
+                    }
+                }
+            }
+        }
+        return moves;
+    }
+
+    public boolean isMate(boolean white){
+        return getAllowedMoves(white).size() == 0;
+    }
+
     public void verifySlidingPieceMoves(int currentPosition, int pieceId, int row, int column, Set<AbstractChessMove> moves, int startingRange, int endingRange, boolean countBlockedPositions){
         for(int k = startingRange; k < endingRange; k++) {
             int[] coeffs = mult[k];
@@ -463,8 +484,6 @@ public class EasyChessBoard {
         EasyChessBoard board = new EasyChessBoard(this.getFEN());
         return board;
     }
-
-
 
 
 
@@ -505,12 +524,12 @@ public class EasyChessBoard {
         WHITE_ROOK(4, 5, "R", true),
         WHITE_QUEEN(5, 9, "Q", true),
         WHITE_KING(6, 100, "K", true),
-        BLACK_PAWN(-1, -1, "p", false),
-        BLACK_KNIGHT(-2, -3, "n", false),
-        BLACK_BISHOP(-3, -3, "b", false),
-        BLACK_ROOK(-4, -5, "r", false),
-        BLACK_QUEEN(-5, -9, "q", false),
-        BLACK_KING(-6, -100, "k", false);
+        BLACK_PAWN(-1, 1, "p", false),
+        BLACK_KNIGHT(-2, 3, "n", false),
+        BLACK_BISHOP(-3, 3, "b", false),
+        BLACK_ROOK(-4, 5, "r", false),
+        BLACK_QUEEN(-5, 9, "q", false),
+        BLACK_KING(-6, 100, "k", false);
 
 
 

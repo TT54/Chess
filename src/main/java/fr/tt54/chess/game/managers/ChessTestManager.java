@@ -1,5 +1,6 @@
-package fr.tt54.chess.game;
+package fr.tt54.chess.game.managers;
 
+import fr.tt54.chess.game.EasyChessBoard;
 import fr.tt54.chess.game.moves.AbstractChessMove;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class ChessTestManager {
 
                 int localCount = countLegalMoves(copy, depth - 1, initialDepth);
                 if(depth == initialDepth){
-                    toPrint.add(ChessBoard.intToStringPosition(chessMove.getInitialPosition()) + ChessBoard.intToStringPosition(chessMove.getFinalPosition()) + " " + localCount);
+                    toPrint.add(EasyChessBoard.intToStringPosition(chessMove.getInitialPosition()) + EasyChessBoard.intToStringPosition(chessMove.getFinalPosition()) + " " + localCount);
                 }
                 count += localCount;
             }
@@ -40,31 +41,10 @@ public class ChessTestManager {
         if(depth == initialDepth){
             for(String str : toPrint.stream().sorted().toList()){
                 System.out.println(str);
-/*                if(!ChessUserManager.verify.contains(str)){
-                    System.out.println("WARING " + str);
-                }*/
             }
         }
 
         return count;
-    }
-
-
-    public static Set<AbstractChessMove> getAllLegalMoves(ChessBoard board){
-        Set<AbstractChessMove> legalMoves = new HashSet<>();
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++) {
-                int piece = board.getPiece(i, j);
-                if (piece != 0) {
-                    if (board.isWhiteToPlay() && piece > 0) {
-                        legalMoves.addAll(board.getPieceMoves(i, j, false, false));
-                    } else if (!board.isWhiteToPlay() && piece < 0) {
-                        legalMoves.addAll(board.getPieceMoves(i, j, false, false));
-                    }
-                }
-            }
-        }
-        return legalMoves;
     }
 
     public static Set<AbstractChessMove> getAllLegalMoves(EasyChessBoard board){

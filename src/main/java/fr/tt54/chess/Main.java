@@ -1,6 +1,6 @@
 package fr.tt54.chess;
 
-import fr.tt54.chess.game.ChessUserManager;
+import fr.tt54.chess.game.managers.ChessUserManager;
 import fr.ttgraphiclib.GraphicManager;
 import fr.ttgraphiclib.graphics.GraphicPanel;
 import fr.ttgraphiclib.thread.Frame;

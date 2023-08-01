@@ -1,6 +1,6 @@
 package fr.tt54.chess.game.moves;
 
-import fr.tt54.chess.game.ChessBoard;
+import fr.tt54.chess.game.EasyChessBoard;
 
 import java.util.Set;
 
@@ -24,9 +24,9 @@ public class EnPassantMove extends AbstractChessMove{
 
     @Override
     public void playMove(int[][] board) {
-        int[] previous = ChessBoard.intToPosition(previousPos);
-        int[] next = ChessBoard.intToPosition(nextPos);
-        int[] captured = ChessBoard.intToPosition(capturedPos);
+        int[] previous = EasyChessBoard.intToPosition(previousPos);
+        int[] next = EasyChessBoard.intToPosition(nextPos);
+        int[] captured = EasyChessBoard.intToPosition(capturedPos);
 
         board[next[0]][next[1]] = board[previous[0]][previous[1]];
         board[previous[0]][previous[1]] = 0;
